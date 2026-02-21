@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import profileImage from './assets/Utkarsh_Sharma.png';
-import emailjs from '@emailjs/browser';
+
 import { 
   FaArrowRight, 
   FaChevronRight, 
@@ -17,12 +17,30 @@ import {
   FaUser,
   FaAward,
   FaLightbulb,
-  FaHeart
+  FaHeart,
+  FaBars,
+  FaTimes,
+   FaUserMd
 } from 'react-icons/fa';
 import { FiMail, FiInstagram, FiTwitter, FiLinkedin, FiGithub, FiExternalLink } from 'react-icons/fi';
 
 function App() {
   const [activeStep, setActiveStep] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    if (!isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('menu-open');
+  };
 
   const services = [
     { icon: <FaPalette />, title: "Web design", description: "Visually stunning web designs that captivate your audience by blending your brand voice and customer needs." },
@@ -75,75 +93,113 @@ function App() {
 
   const projects = [
     { 
-      title: "E-Commerce Platform", 
-      description: "A modern, responsive e-commerce solution with seamless checkout and inventory management.", 
+      title: "MedExJob.com – Medical Job Portal", 
+      description: "MedExJob.com is a medical job portal where students and professionals apply for jobs.", 
       category: "Web Development",
-      tech: ["React", "Node.js", "MongoDB"],
+      tech: ["React", "Typscript", "Redux","Tailwind CSS","Spring Boot","Spring Secuirty","MySQL"],
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      icon: <FaCode />,
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+     icon: <FaUserMd />,
+      image: "https://lens.usercontent.google.com/banana?agsi=CmdnbG9iYWw6OjAwMDA1NWNmZWM3MDAyNmQ6MDAwMDAwZWI6MTpiZjkzZmE0NjIzZTZjYzM3OjAwMDA1NWNmZWM3MDAyNmQ6MDAwMDAxODFlYzcwMzM2ODowMDA2NGFhNmYzNjhlZDNmEAI=",
+      githubUrl: "https://github.com/UtkarshSharm-a/Medical_Job_Portal",
+      liveUrl: "https://medexjob.com/"
     },
     { 
-      title: "Brand Identity Design", 
-      description: "Complete brand identity redesign for a tech startup, including logo, color palette, and guidelines.", 
-      category: "UI/UX Design",
-      tech: ["Figma", "Illustrator", "Photoshop"],
+      title: "Employee Management System", 
+      description: "A web-based system for managing employee records, roles, and departments with secure and efficient data handling.", 
+      category: "Web Development",
+      tech: ["React","Redux","CSS","Spring Boot","Spring Secuirty","MySQL"],
       gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
       icon: <FaPalette />,
-      image: "https://images.unsplash.com/photo-1561070791-2526d69294b1?w=800&h=600&fit=crop",
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      image: "https://www.zimyo.com/middle-east/wp-content/uploads/2025/05/Role-of-TEchnology-in-Employee-Data-Management.webp",
+      githubUrl: "https://github.com/UtkarshSharm-a/employee_management_system",
+      liveUrl: ""
     },
     { 
-      title: "Mobile App Interface", 
-      description: "Intuitive mobile app design with focus on user experience and modern aesthetics.", 
-      category: "Mobile Design",
-      tech: ["Figma", "Sketch", "Principle"],
+      title: "Lagunitas Brewing Company", 
+      description: "Intuitive frontend web development with a focus on user experience and modern aesthetics.",
+      category: "Frontend Web Development",
+      tech: ["HTML","CSS","JavaScript","GSASP","ScrollTrigger","locomotive js","Swiper js","Framer Motion"],
       gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
       icon: <FaLaptopCode />,
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop",
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      image: "https://mir-s3-cdn-cf.behance.net/project_modules/hd/feb32c31265291.564943e651232.jpg",
+      githubUrl: "https://github.com/UtkarshSharm-a/reimagin-2",
+      liveUrl: "https://reimagin-2.onrender.com/"
     },
     { 
-      title: "SEO Optimization", 
-      description: "Comprehensive SEO strategy that increased organic traffic by 300% in 6 months.", 
-      category: "Digital Marketing",
-      tech: ["Analytics", "SEO Tools", "Content"],
+      title: "Stock Trading Application", 
+      description: "A fully responsive Stock Trading Apllication using the MERN stack to practice real-world UI design and full-stack development.", 
+      category: "Full Stack Web Development",
+      tech: ["HTML", "CSS", "JS","BOOTSTRAP","REACT JS","NODE JS","EXPRESS JS","MONGODB"],
       gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
       icon: <FaChartLine />,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      githubUrl: "https://github.com/UtkarshSharm-a/Zerodha-main1-main",
+      liveUrl: "https://stock-buy-sell-frontends.onrender.com/"
     },
     { 
-      title: "Dashboard Design", 
-      description: "Data visualization dashboard with real-time analytics and interactive charts.", 
-      category: "Web Design",
-      tech: ["React", "D3.js", "Chart.js"],
+      title: "Fitness Tracker", 
+      description: "AI-powered fitness recommendation microservice that consumes activity data via Kafka and generates personalized workout insights using Gemini AI.", 
+      category: "Full Stack Web Development",
+      tech: ["Spring Boot", "Microservices", "Spring Cloud", "Eureka Server", "API Gateway", "Kafka", "Google Gemini API","MongoDB","React"],
       gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
       icon: <FaChartLine />,
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-      githubUrl: "https://github.com",
+      image: "https://www.creativefabrica.com/wp-content/uploads/2022/11/01/Fitness-Workout-Tracker-App-UI-Kit-Graphics-44164698-1.png",
+      githubUrl: "https://github.com/UtkarshSharm-a/Fitness-Tracker.git",
       liveUrl: "https://example.com"
     },
     { 
-      title: "Landing Page", 
-      description: "High-converting landing page design that increased conversion rates by 250%.", 
-      category: "Web Design",
-      tech: ["HTML", "CSS", "JavaScript"],
+      title: "Sundown Studio", 
+      description: "Sundown Studio website showcasing modern UI design, smooth animations, and interactive frontend features using HTML, CSS, and JavaScript.", 
+      category: "Frontend Web Development",
+      tech: ["HTML","CSS","JavaScript","GSASP","ScrollTrigger","locomotive js","Swiper js","Framer Motion"],
       gradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
       icon: <FaPalette />,
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      image: "https://image.commarts.com/images1/2/5/5/1/1/1155216_102_1160_MjAwODYxMTQ0MS03NzgwMzc0OTc.jpg",
+      githubUrl: "https://github.com/UtkarshSharm-a/Sundown.git",
+      liveUrl: "https://hellowsundown.vercel.app/"
     }
   ];
 
   return (
     <div className="arik-portfolio">
+      {/* Mobile Menu Icon - ONLY shows on mobile */}
+      <button className="mobile-menu-icon" onClick={toggleMenu} aria-label="Open menu">
+        <FaBars />
+      </button>
+
+      {/* Mobile Menu Overlay - ONLY shows on mobile when open */}
+      <div className={`mobile-menu-overlay ${isMenuOpen ? 'active' : ''}`}>
+        <button className="close-menu-icon" onClick={closeMenu} aria-label="Close menu">
+          <FaTimes />
+        </button>
+        
+        <div className="mobile-menu-content">
+          <div className="mobile-menu-logo">
+            Portfolio
+          </div>
+          
+          <div className="mobile-nav-menu">
+            <a href="#about" onClick={closeMenu}>About</a>
+            <a href="#services" onClick={closeMenu}>Services</a>
+            <a href="#process" onClick={closeMenu}>Process</a>
+            <a href="#testimonials" onClick={closeMenu}>Testimonials</a>
+            <a href="#contact" onClick={closeMenu}>Contact</a>
+          </div>
+          
+          <a href="#contact" className="mobile-contact-btn" onClick={closeMenu}>
+            Let's talk <FaArrowRight />
+          </a>
+          
+          <div className="mobile-social-icons">
+            <a href="#" aria-label="Instagram"><FiInstagram /></a>
+            <a href="#" aria-label="Twitter"><FiTwitter /></a>
+            <a href="#" aria-label="LinkedIn"><FiLinkedin /></a>
+            <a href="#" aria-label="Email"><FiMail /></a>
+            <a href="#" aria-label="GitHub"><FiGithub /></a>
+          </div>
+        </div>
+      </div>
+
       <HeroSection />
       <AboutSection />
       <ServicesSection services={services} />
@@ -191,7 +247,7 @@ function HeroSection() {
       
       <div className="hero-stats">
         <div className="stat">
-          <h3>50+</h3>
+          <h3>25+</h3>
           <p>Projects completed</p>
         </div>
         <div className="stat">
@@ -199,7 +255,7 @@ function HeroSection() {
           <p>Client satisfaction</p>
         </div>
         <div className="stat">
-          <h3>5 years</h3>
+          <h3>3 years</h3>
           <p>Industry experience</p>
         </div>
       </div>
@@ -236,10 +292,10 @@ function AboutSection() {
   ];
 
   const achievements = [
-    { icon: <FaAward />, number: "50+", label: "Projects Delivered" },
+    { icon: <FaAward />, number: "25+", label: "Projects Delivered" },
     { icon: <FaHeart />, number: "100%", label: "Client Satisfaction" },
-    { icon: <FaUser />, number: "40+", label: "Happy Clients" },
-    { icon: <FaLightbulb />, number: "5+", label: "Years Experience" }
+    { icon: <FaUser />, number: "25+", label: "Happy Clients" },
+    { icon: <FaLightbulb />, number: "3+", label: "Years Experience" }
   ];
 
   return (
@@ -252,9 +308,9 @@ function AboutSection() {
       <div className="about-container">
         <div className="about-content">
           <div className="about-text">
-            <h3>Hello, I'm a Creative Problem Solver</h3>
+       <h3>Hello, I'm Utkarsh Sharma a Creative & Problem Solver</h3>
             <p>
-              With over 5 years of experience in web design and development, I've had the privilege 
+              With over 3 years of experience in web design and development, I've had the privilege 
               of working with amazing clients to bring their digital visions to life. My approach 
               combines creative design thinking with technical expertise to deliver solutions that 
               not only look stunning but also drive real business results.
@@ -361,6 +417,7 @@ function ProcessSection({ processSteps, activeStep, setActiveStep }) {
       </div>
       
       <div className="process-timeline">
+
         <div className="timeline-navigation">
           {processSteps.map((step, index) => (
             <button 
@@ -378,7 +435,7 @@ function ProcessSection({ processSteps, activeStep, setActiveStep }) {
           <div className="step-header">
             <h3>{processSteps[activeStep].subtitle}</h3>
             <div className="step-duration">
-              <FaCalendarAlt /> {processSteps[activeStep].duration}
+              <FaCalendarAlt />
             </div>
           </div>
           <p className="step-description">{processSteps[activeStep].description}</p>
@@ -390,6 +447,7 @@ function ProcessSection({ processSteps, activeStep, setActiveStep }) {
             ))}
           </ul>
         </div>
+
       </div>
     </section>
   );
@@ -481,7 +539,6 @@ function ContactSection() {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Clear status message when user starts typing
     if (submitStatus.message) {
       setSubmitStatus({ type: '', message: '' });
     }
@@ -492,54 +549,35 @@ function ContactSection() {
     setIsLoading(true);
     setSubmitStatus({ type: '', message: '' });
 
-    // EmailJS configuration
-    // Setup Instructions:
-    // 1. Sign up at https://www.emailjs.com/ (free account allows 200 emails/month)
-    // 2. Add Gmail service and connect your email: utkarshsharma8369@gmail.com
-    // 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{message}}
-    // 4. Get your Service ID, Template ID, and Public Key from EmailJS dashboard
-    // 5. Replace the values below
-    // See EMAILJS_SETUP.md for detailed instructions
-    
-    // Read EmailJS credentials from Vite environment variables.
-    // Create a `.env.local` (or `.env`) at project root with these values:
-    // VITE_EMAILJS_SERVICE_ID=service_xxxxx
-    // VITE_EMAILJS_TEMPLATE_ID=template_xxxxx
-    // VITE_EMAILJS_PUBLIC_KEY=your_public_key
-    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
-    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
-
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      message: formData.message,
-      to_email: 'utkarshsharma8369@gmail.com', // Your email
-    };
-
-    // Quick validation to help developer if env vars are missing
-    if (!serviceID || !templateID || !publicKey) {
-      setSubmitStatus({
-        type: 'error',
-        message:
-          'Email service is not configured. Please add EmailJS keys to .env.local (see EMAILJS_SETUP.md).'
-      });
-      setIsLoading(false);
-      return;
-    }
-
     try {
-      await emailjs.send(serviceID, templateID, templateParams, publicKey);
-      setSubmitStatus({ 
-        type: 'success', 
-        message: 'Message sent successfully! I\'ll get back to you soon.' 
+      const response = await fetch('https://formsubmit.co/ajax/utkarshsharma8369@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
-      setFormData({ name: '', email: '', message: '' });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({ 
+          type: 'success', 
+          message: 'Message sent successfully! I\'ll get back to you soon.' 
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Failed to send');
+      }
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Error:', error);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Failed to send message. Please try again or contact me directly at utkarshsharma8369@gmail.com' 
+        message: 'Failed to send message. Please try again!' 
       });
     } finally {
       setIsLoading(false);
