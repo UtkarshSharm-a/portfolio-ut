@@ -255,7 +255,7 @@ function HeroSection() {
           <p>Client satisfaction</p>
         </div>
         <div className="stat">
-          <h3>3 years</h3>
+          <h3>1.5 years</h3>
           <p>Industry experience</p>
         </div>
       </div>
